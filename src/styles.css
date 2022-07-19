@@ -1,0 +1,38 @@
+html,
+input,
+button {
+  font-size: 20px;
+  font-family: sans-serif;
+}
+body {
+  padding: 20px;
+  background-image: url(https://cdn.pixabay.com/photo/2015/04/20/18/54/koi-732007__340.png);
+  background-color: #dcfadf;
+}
+div {
+  background-color: beige;
+  padding: 20px;
+  margin: 0 0 1rem;
+}
+
+input,
+textarea,
+button {
+  display: flexbox;
+  font-family: sans-serif;
+  margin: auto;
+  background-color: #f7f6eb;
+  padding: 0.3rem;
+  border: solid 2px black;
+  border-radius: 0.2rem;
+}
+
+textarea {
+  display: block;
+  width: 700px;
+  height: 150px;
+}
+label {
+  text-align: center;
+  display: block;
+}
