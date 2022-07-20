@@ -86,9 +86,9 @@ function App() {
         <label>
           <AreaField
             field="overview"
-            defaultValue="●  This is a note."
-            onKeyPress={bullet}
-            onPaste={bullet}
+            defaultValue="This is a note."
+            // onKeyPress={bullet}
+            // onPaste={bullet}
           />
         </label>
       </div>

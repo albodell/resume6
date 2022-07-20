@@ -31,7 +31,6 @@ export default function getTextPara(textElement) {
     if (i >= cleanTextArray.length) {
       break;
     }
-
     arrayTwo.push(
       new docx.Paragraph({
         children: [

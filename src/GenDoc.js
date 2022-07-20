@@ -1,22 +1,27 @@
 import "./styles.css";
-import {
+import docx, {
   Paragraph,
   Document,
   Packer,
   HeadingLevel,
   AlignmentType,
-  TextRun
+  TextRun,
+  TableRow,
+  TableCell
 } from "docx";
 import { saveAs } from "file-saver";
 import split from "./Split";
 import jobFormat from "./JobFormat";
-import tableRow from "./TableRow";
+import skillsTable from "./SkillsTable";
+import bulletTable from "./BulletTable";
+import titleGen from "./TitleGen";
 //generates doc and holds basic html headers words and stuff
 
 //export default function GenDoc(values) {
 export default function generate(values) {
-  const skills = tableRow(values["skills"]);
-  const overview = split(values["overview"]);
+  const experienceTitle = titleGen("Technical Experience");
+  const skills = skillsTable(values["skills"]);
+  const overview = bulletTable(values["overview"]);
   const experience = jobFormat(
     values["experience"],
     values["company"],
@@ -51,13 +56,13 @@ export default function generate(values) {
             ]
           }),
           overview,
-          experience,
+          new Paragraph({}),
+
+          experienceTitle,
+          new Paragraph({}),
+
           skills,
-          new Paragraph({
-            // bullet: {
-            //   level: 0
-            // }
-          })
+          experience
         ]
       }
     ]
