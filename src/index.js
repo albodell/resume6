@@ -70,26 +70,16 @@ function App() {
     <Form>
       <div>
         <label>
-          Name:{" "}
-          <InputField
-            field="name"
-            //validate={(value) => (!value ? "Required" : false)}
-          />
+          Name: <InputField field="name" />
         </label>
       </div>
       <div>
         <label>
-          Overview Title:
-          <InputField field="overviewTitle" />
+          Overview Title: <InputField field="overviewTitle" />
         </label>
         Overview:{" "}
         <label>
-          <AreaField
-            field="overview"
-            defaultValue="This is a note."
-            // onKeyPress={bullet}
-            // onPaste={bullet}
-          />
+          <AreaField field="overview" defaultValue="This is a note." />
         </label>
       </div>
       <div>
@@ -113,7 +103,8 @@ function App() {
                 <InputField field={`company.${i}`} />
                 <br />
                 <br />
-                Start: <InputField field={`start.${i}`} /> End:{" "}
+                Location: <InputField field={`location.${i}`} /> Start:{" "}
+                <InputField field={`start.${i}`} /> End:{" "}
                 <InputField field={`end.${i}`} />
                 <br />
                 <br />

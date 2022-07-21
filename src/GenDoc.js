@@ -3,11 +3,8 @@ import docx, {
   Paragraph,
   Document,
   Packer,
-  HeadingLevel,
   AlignmentType,
-  TextRun,
-  TableRow,
-  TableCell
+  TextRun
 } from "docx";
 import { saveAs } from "file-saver";
 import split from "./Split";
@@ -20,11 +17,13 @@ import titleGen from "./TitleGen";
 //export default function GenDoc(values) {
 export default function generate(values) {
   const experienceTitle = titleGen("Technical Experience");
+  const jobTitle = titleGen("Professional Highlights");
   const skills = skillsTable(values["skills"]);
   const overview = bulletTable(values["overview"]);
   const experience = jobFormat(
     values["experience"],
     values["company"],
+    values["location"],
     values["date"],
     values["duties"]
   );
@@ -60,8 +59,11 @@ export default function generate(values) {
 
           experienceTitle,
           new Paragraph({}),
-
           skills,
+
+          new Paragraph({}),
+          jobTitle,
+          new Paragraph({}),
           experience
         ]
       }
@@ -74,7 +76,3 @@ export default function generate(values) {
     console.log("Document created successfully");
   });
 }
-// console.log(generate);
-//return {generate}
-//return <button onClick={generate}> Generate doc </button>;
-//}

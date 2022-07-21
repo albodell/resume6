@@ -4,7 +4,8 @@ import {
   BorderStyle,
   AlignmentType,
   WidthType,
-  TextRun
+  TextRun,
+  convertInchesToTwip
 } from "docx";
 
 export default function experienceTitle(titleName) {
@@ -25,6 +26,10 @@ export default function experienceTitle(titleName) {
         ]
       })
     ],
+    margins: {
+      top: convertInchesToTwip(0.03),
+      bottom: convertInchesToTwip(0.03)
+    },
     height: {
       size: 0.2
     },
@@ -51,7 +56,8 @@ export default function experienceTitle(titleName) {
     ],
     borders: {
       bottom: {
-        style: BorderStyle.DOT_DASH
+        style: BorderStyle.SINGLE,
+        size: 1
       }
     }
   });
