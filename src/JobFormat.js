@@ -1,44 +1,70 @@
-import bullet from "./Bullet";
+import { NumberFormat, TextRun, Paragraph } from "docx";
 import bulletTable from "./BulletTable";
 
 export default function getTextPara(title, company, location, date, duties) {
-  var docx = require("docx");
-  var allJob = [];
+  //var docx = require("docx");
+  var allJob = [new TextRun({})];
 
   for (var p = 0; p < title.length; p++) {
+    var currDuties = bulletTable(duties[p], 2);
     allJob.push(
-      new docx.TextRun({
-        text: company[p],
-        font: "Bookman Old Style",
-        size: 21,
-        bold: true
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: p + 1,
+            font: "Bookman Old Style",
+            size: 21,
+            bold: true
+          }),
+          new TextRun({
+            text: ".  ",
+            font: "Bookman Old Style",
+            size: 21,
+            bold: true
+          }),
+          new TextRun({
+            text: company[p],
+            font: "Bookman Old Style",
+            size: 21,
+            bold: true
+          }),
+          new TextRun({
+            text: " —— ",
+            bold: true,
+            font: "Bookman Old Style",
+            size: 21
+          }),
+          new TextRun({
+            text: location[p],
+            font: "Bookman Old Style",
+            size: 21,
+            bold: true
+          })
+        ]
       }),
-      new docx.TextRun({
-        text: " —— ",
-        bold: true,
-        font: "Bookman Old Style",
-        size: 21
+
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: title[p],
+            font: "Bookman Old Style",
+            size: 19,
+            bold: true,
+            underline: true,
+            break: 1
+          }),
+          new TextRun({ text: ", " }),
+          new TextRun({
+            text: date[p],
+            font: "Bookman Old Style",
+            size: 19
+          })
+        ]
       }),
-      new docx.TextRun({
-        text: location[p],
-        font: "Bookman Old Style",
-        size: 21,
-        bold: true
-      }),
-      new docx.TextRun({
-        text: title[p],
-        font: "Bookman Old Style",
-        size: 19,
-        bold: true,
-        underline: true,
-        break: 1
-      }),
-      new docx.TextRun({ text: ", " }),
-      new docx.TextRun({
-        text: date[p],
-        font: "Bookman Old Style",
-        size: 19
-      })
+
+      new Paragraph({}),
+      currDuties,
+      new Paragraph({})
     );
     //allJob.push([company[p], location[p], title[p], date[p], duties[p]])
     //cleanDutiesArray = cleanDutiesArray.concat(duties[p].split("\n"));
@@ -94,7 +120,7 @@ export default function getTextPara(title, company, location, date, duties) {
     // }
   }
 
-  return new docx.Paragraph({
+  return new Paragraph({
     children: allJob
   });
 }

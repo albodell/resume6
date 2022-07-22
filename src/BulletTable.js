@@ -7,7 +7,7 @@ import {
   TextRun
 } from "docx";
 
-export default function getTextPara(textElement) {
+export default function getTextPara(textElement, lvl = 0, leftM = 0.1) {
   var docx = require("docx");
   var cleanTextArray = textElement.split("\n");
 
@@ -17,7 +17,7 @@ export default function getTextPara(textElement) {
     arrayOne.push(
       new docx.Paragraph({
         bullet: {
-          level: 0
+          level: lvl
         },
         children: [
           new TextRun({
@@ -36,8 +36,8 @@ export default function getTextPara(textElement) {
       size: 0.2
     },
     margins: {
-      left: convertInchesToTwip(0.1),
-      right: convertInchesToTwip(0.1)
+      left: convertInchesToTwip(leftM),
+      right: convertInchesToTwip(0.7)
     },
     borders: {
       left: {

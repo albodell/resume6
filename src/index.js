@@ -44,7 +44,8 @@ function App() {
       phone: "248-568-8923",
       email: "Alex@gmail.com",
       experience: ["Engineer"],
-      company: ["eshocan"],
+      company: ["Amazon"],
+      location: ["Detroit"],
       date: ["6/12/2020"],
       duties: ["This is a note."]
     }),
@@ -110,7 +111,7 @@ function App() {
                 <br />
               </label>
               <label>
-                Duties: <AreaField field={`duties.${i}`} onKeyPress={bullet} />{" "}
+                Duties: <AreaField field={`duties.${i}`} />
                 <button
                   type="button"
                   onClick={() => removeFieldValue("experience", i)}

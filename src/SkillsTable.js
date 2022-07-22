@@ -22,6 +22,7 @@ export default function getTextPara(textElement) {
           new TextRun({
             font: "Bookman Old Style",
             size: 19,
+            italics: true,
             text: cleanTextArray[i]
           })
         ]

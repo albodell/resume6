@@ -4,7 +4,8 @@ import docx, {
   Document,
   Packer,
   AlignmentType,
-  TextRun
+  TextRun,
+  TableRowHeight
 } from "docx";
 import { saveAs } from "file-saver";
 import split from "./Split";
@@ -19,7 +20,7 @@ export default function generate(values) {
   const experienceTitle = titleGen("Technical Experience");
   const jobTitle = titleGen("Professional Highlights");
   const skills = skillsTable(values["skills"]);
-  const overview = bulletTable(values["overview"]);
+  const overview = bulletTable(values["overview"], 0, 0.5);
   const experience = jobFormat(
     values["experience"],
     values["company"],
@@ -30,6 +31,14 @@ export default function generate(values) {
   const doc = new Document({
     sections: [
       {
+        properties: {
+          page: {
+            margin: {
+              right: 1000,
+              left: 1000
+            }
+          }
+        },
         children: [
           new Paragraph({
             alignment: AlignmentType.CENTER,
@@ -42,15 +51,17 @@ export default function generate(values) {
                 underline: true
               }),
               new TextRun({
-                text: " ________________________________________",
+                text: " _________________________________________________",
                 size: 40,
-                bold: true
+                bold: true,
+                underline: true
               }),
               new TextRun({
                 break: 1,
                 text: values["overviewTitle"],
                 font: "Bookman Old Style",
-                size: 26
+                size: 26,
+                bold: true
               })
             ]
           }),
@@ -60,7 +71,6 @@ export default function generate(values) {
           experienceTitle,
           new Paragraph({}),
           skills,
-
           new Paragraph({}),
           jobTitle,
           new Paragraph({}),
