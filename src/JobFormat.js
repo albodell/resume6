@@ -1,8 +1,14 @@
-import { NumberFormat, TextRun, Paragraph } from "docx";
+import { TextRun, Paragraph } from "docx";
 import bulletTable from "./BulletTable";
 
-export default function getTextPara(title, company, location, date, duties) {
-  //var docx = require("docx");
+export default function getTextPara(
+  title,
+  company,
+  location,
+  startDate,
+  endDate,
+  duties
+) {
   var allJob = [new TextRun({})];
 
   for (var p = 0; p < title.length; p++) {
@@ -42,7 +48,6 @@ export default function getTextPara(title, company, location, date, duties) {
           })
         ]
       }),
-
       new Paragraph({
         children: [
           new TextRun({
@@ -53,9 +58,19 @@ export default function getTextPara(title, company, location, date, duties) {
             underline: true,
             break: 1
           }),
-          new TextRun({ text: ", " }),
+          new TextRun({ text: ",  " }),
           new TextRun({
-            text: date[p],
+            text: startDate[p],
+            font: "Bookman Old Style",
+            size: 19
+          }),
+          new TextRun({
+            text: " to ",
+            font: "Bookman Old Style",
+            size: 19
+          }),
+          new TextRun({
+            text: endDate[p],
             font: "Bookman Old Style",
             size: 19
           })
@@ -66,58 +81,6 @@ export default function getTextPara(title, company, location, date, duties) {
       currDuties,
       new Paragraph({})
     );
-    //allJob.push([company[p], location[p], title[p], date[p], duties[p]])
-    //cleanDutiesArray = cleanDutiesArray.concat(duties[p].split("\n"));
-
-    // for (var i = 0; i < cleanDutiesArray.length;) {
-    //   companyLocation = new docx.TextRun({
-    //     companyText: cleanDutiesArray[i],
-    //     locationText: cleanDutiesArray[i+1]
-    //   });
-    //   i++
-    //   titleDate = new docx.TextRun({
-    //     text: cleanDutiesArray[i]
-    //   });
-    //   i++
-    //   dutiesPara = new docx.TextRun({
-    //     text: cleanDutiesArray[i]
-    //   });
-    //   i++
-
-    // para.addChildElement(currCompany);
-    // currCompany = new docx.TextRun({
-    //   text: "",
-    //   break: 1,
-    //   font: "Bookman Old Style",
-    //   size: 19
-    // });
-    // para.addChildElement(currCompany);
-
-    // para.addChildElement(currLocation);
-    // currLocation = new docx.TextRun({
-    //   text: "",
-    //   font: "Bookman Old Style",
-    //   size: 19
-    // });
-    // para.addChildElement(currLocation);
-
-    // para.addChildElement(currTitle);
-    // currTitle = new docx.TextRun({
-    //   text: "",
-    //   break: 1,
-    //   font: "Bookman Old Style",
-    //   size: 19
-    // });
-    // para.addChildElement(currTitle);
-
-    // para.addChildElement(currDate);
-    // currDate = new docx.TextRun({
-    //   text: "",
-    //   font: "Bookman Old Style",
-    //   size: 19
-    // });
-    // para.addChildElement(currDate);
-    // }
   }
 
   return new Paragraph({

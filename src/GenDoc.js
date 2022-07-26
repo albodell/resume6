@@ -13,20 +13,28 @@ import jobFormat from "./JobFormat";
 import skillsTable from "./SkillsTable";
 import bulletTable from "./BulletTable";
 import titleGen from "./TitleGen";
+import qualTable from "./QualTable";
 //generates doc and holds basic html headers words and stuff
 
 //export default function GenDoc(values) {
 export default function generate(values) {
-  const experienceTitle = titleGen("Technical Experience");
+  const skillsTitle = titleGen("Technical Experience");
   const jobTitle = titleGen("Professional Highlights");
+  const diplomaTitle = titleGen("Academic Qualifications");
   const skills = skillsTable(values["skills"]);
   const overview = bulletTable(values["overview"], 0, 0.5);
   const experience = jobFormat(
     values["experience"],
     values["company"],
     values["location"],
-    values["date"],
+    values["start"],
+    values["end"],
     values["duties"]
+  );
+  const qualifications = qualTable(
+    values["diplomaName"],
+    values["diplomaLocation"],
+    values["diplomaDate"]
   );
   const doc = new Document({
     sections: [
@@ -68,13 +76,19 @@ export default function generate(values) {
           overview,
           new Paragraph({}),
 
-          experienceTitle,
+          skillsTitle,
           new Paragraph({}),
           skills,
           new Paragraph({}),
+
           jobTitle,
           new Paragraph({}),
-          experience
+          experience,
+          new Paragraph({}),
+
+          diplomaTitle,
+          new Paragraph({}),
+          qualifications
         ]
       }
     ]

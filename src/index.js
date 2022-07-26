@@ -1,37 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import generate from "./GenDoc";
-import bullet from "./Bullet";
 
 import "./styles.css";
 
 import { useForm, useField, splitFormProps } from "react-form";
 
 const InputField = React.forwardRef((props, ref) => {
-  // Let's use splitFormProps to get form-specific props
   const [field, fieldOptions, rest] = splitFormProps(props);
 
-  // Use the useField hook with a field and field options
-  // to access field state
-  const {
-    //meta: { error, isTouched, isValidating, message },
-    getInputProps
-  } = useField(field, fieldOptions);
+  const { getInputProps } = useField(field, fieldOptions);
 
   // Build the field
   return <input {...getInputProps({ ref, ...rest })} />;
 });
 
 const AreaField = React.forwardRef((props, ref) => {
-  // Let's use splitFormProps to get form-specific props
   const [field, fieldOptions, rest] = splitFormProps(props);
 
-  // Use the useField hook with a field and field options
-  // to access field state
-  const {
-    //meta: { error, isTouched, isValidating, message },
-    getInputProps
-  } = useField(field, fieldOptions);
+  // Use the useField hook with a field and field options to access field state
+  const { getInputProps } = useField(field, fieldOptions);
 
   // Build the field
   return <textarea {...getInputProps({ ref, ...rest })} />;
@@ -44,9 +32,12 @@ function App() {
       phone: "248-568-8923",
       email: "Alex@gmail.com",
       experience: ["Engineer"],
+      qualifications: ["something"],
       company: ["Amazon"],
       location: ["Detroit"],
       date: ["6/12/2020"],
+      start: ["6/19/2019"],
+      end: ["7/2/2020"],
       duties: ["This is a note."]
     }),
     []
@@ -90,7 +81,7 @@ function App() {
         </label>
       </div>
       <div>
-        Experience
+        Experience:
         <div
           style={{
             border: "1px solid black",
@@ -121,6 +112,7 @@ function App() {
               </label>
             </div>
           ))}
+
           <button
             type="button"
             onClick={() => pushFieldValue("experience", "")}
@@ -128,6 +120,45 @@ function App() {
             Add Job
           </button>
         </div>
+      </div>
+
+      <div>
+        Academic Qualifications:
+        <div
+          style={{
+            border: "1px solid black",
+            padding: "1rem"
+          }}
+        >
+          {values.qualifications.map((job, i) => (
+            <div key={i}>
+              <label>
+                Diploma Name: <InputField field={`diplomaName.${i}`} /> Location
+                Earned: <InputField field={`diplomaLocation.${i}`} /> Date
+                Earned: <InputField field={`diplomaDate.${i}`} />{" "}
+                <button
+                  type="button"
+                  onClick={() => removeFieldValue("qualifications", i)}
+                >
+                  X
+                </button>
+              </label>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => pushFieldValue("qualifications", "")}
+          >
+            Add Diploma
+          </button>
+        </div>
+      </div>
+
+      <div>
+        Specialized Training:{" "}
+        <label>
+          <AreaField field="training" defaultValue="This is a note." />
+        </label>
       </div>
 
       {isSubmitted ? <em>Thanks for submitting!</em> : null}
