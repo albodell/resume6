@@ -7,6 +7,7 @@ import {
   TextRun,
   convertInchesToTwip
 } from "docx";
+import { useEffect } from "react";
 
 export default function experienceTitle(titleName) {
   var docx = require("docx");
@@ -21,7 +22,8 @@ export default function experienceTitle(titleName) {
             text: titleName,
             size: 24,
             bold: true,
-            font: "Bookman Old Style"
+            font: "Bookman Old Style (Headings)",
+            smallCaps: true
           })
         ]
       })

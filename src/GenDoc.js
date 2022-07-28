@@ -4,11 +4,9 @@ import docx, {
   Document,
   Packer,
   AlignmentType,
-  TextRun,
-  TableRowHeight
+  TextRun
 } from "docx";
 import { saveAs } from "file-saver";
-import split from "./Split";
 import jobFormat from "./JobFormat";
 import skillsTable from "./SkillsTable";
 import bulletTable from "./BulletTable";
@@ -21,8 +19,10 @@ export default function generate(values) {
   const skillsTitle = titleGen("Technical Experience");
   const jobTitle = titleGen("Professional Highlights");
   const diplomaTitle = titleGen("Academic Qualifications");
+  const trainTitle = titleGen("Specialized Training");
   const skills = skillsTable(values["skills"]);
   const overview = bulletTable(values["overview"], 0, 0.5);
+  const training = bulletTable(values["training"], 0, 0.5);
   const experience = jobFormat(
     values["experience"],
     values["company"],
@@ -69,7 +69,8 @@ export default function generate(values) {
                 text: values["overviewTitle"],
                 font: "Bookman Old Style",
                 size: 26,
-                bold: true
+                bold: true,
+                smallCaps: true
               })
             ]
           }),
@@ -88,7 +89,12 @@ export default function generate(values) {
 
           diplomaTitle,
           new Paragraph({}),
-          qualifications
+          qualifications,
+          new Paragraph({}),
+
+          trainTitle,
+          new Paragraph({}),
+          training
         ]
       }
     ]

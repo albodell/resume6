@@ -7,24 +7,30 @@ button {
 body {
   padding: 20px;
   background-image: url(https://cdn.pixabay.com/photo/2015/04/20/18/54/koi-732007__340.png);
-  background-color: #dcfadf;
+  background-color: lightblue;
+  /* font: "open sans"; */
 }
 div {
-  background-color: beige;
+  background-color: rgb(249, 249, 253);
+  /* background-color: #f7f6eb; */
   padding: 20px;
   margin: 0 0 1rem;
+  size: 30px;
+  font-weight: 500;
+  font-family: "sans-serif", verdana;
 }
 
 input,
 textarea,
 button {
   display: flexbox;
-  font-family: sans-serif;
+  font-family: "Sans-Serif", Arial;
   margin: auto;
-  background-color: #f7f6eb;
+  /* background-color: whitesmoke; */
   padding: 0.3rem;
   border: solid 2px black;
   border-radius: 0.2rem;
+  margin-bottom: 10px;
 }
 
 textarea {

@@ -43,7 +43,8 @@ export default function getTextPara(name, location, date) {
             text: date[i]
           })
         ]
-      })
+      }),
+      new Paragraph({})
     );
   }
 
@@ -63,6 +64,9 @@ export default function getTextPara(name, location, date) {
     borders: {
       left: {
         size: 3
+      },
+      right: {
+        size: 3
       }
     }
   });
@@ -79,6 +83,14 @@ export default function getTextPara(name, location, date) {
     margins: {
       left: convertInchesToTwip(0.1),
       right: convertInchesToTwip(0.1)
+    },
+    borders: {
+      left: {
+        size: 3
+      },
+      right: {
+        size: 3
+      }
     }
   });
 
@@ -103,40 +115,3 @@ export default function getTextPara(name, location, date) {
     }
   });
 }
-
-// export default function getTextPara(
-//   name,
-//   location,
-//   date
-// ) {
-//   var allQ = [new TextRun({})];
-
-//   for (var p = 0; p < name.length; p++) {
-
-//     allQ.push(
-//       new Table({
-//         children: [
-//           new TextRun({
-//             text: name[p],
-//             font: "Bookman Old Style",
-//             size: 21,
-//             bold: true
-//           }),
-
-//           new TextRun({
-//             text: location[p],
-//             font: "Bookman Old Style",
-//             size: 21,
-//             bold: true,
-//             break: 1
-//           })
-//         ]
-//       }),
-
-//     );
-//   }
-
-//   return new Paragraph({
-//     children: allQ
-//   });
-// }

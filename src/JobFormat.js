@@ -12,7 +12,7 @@ export default function getTextPara(
   var allJob = [new TextRun({})];
 
   for (var p = 0; p < title.length; p++) {
-    var currDuties = bulletTable(duties[p], 2);
+    var currDuties = bulletTable(duties[p], 0, 0.6);
     allJob.push(
       new Paragraph({
         children: [
