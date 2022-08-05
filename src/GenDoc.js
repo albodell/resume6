@@ -4,7 +4,8 @@ import docx, {
   Document,
   Packer,
   AlignmentType,
-  TextRun
+  TextRun,
+  ImageRun
 } from "docx";
 import { saveAs } from "file-saver";
 import jobFormat from "./JobFormat";
@@ -12,6 +13,8 @@ import skillsTable from "./SkillsTable";
 import bulletTable from "./BulletTable";
 import titleGen from "./TitleGen";
 import qualTable from "./QualTable";
+import logo from "./img/logo.png";
+
 //generates doc and holds basic html headers words and stuff
 
 //export default function GenDoc(values) {
@@ -23,6 +26,7 @@ export default function generate(values) {
   const skills = skillsTable(values["skills"]);
   const overview = bulletTable(values["overview"], 0, 0.5);
   const training = bulletTable(values["training"], 0, 0.5);
+
   const experience = jobFormat(
     values["experience"],
     values["company"],
@@ -50,7 +54,26 @@ export default function generate(values) {
         children: [
           new Paragraph({
             alignment: AlignmentType.CENTER,
+            spacing: {
+              before: 200,
+              after: 150
+            },
             children: [
+              new ImageRun({
+                data: logo,
+                transformation: {
+                  width: 50,
+                  height: 50
+                },
+                floating: {
+                  horizontalPosition: {
+                    offset: 1014400
+                  },
+                  verticalPosition: {
+                    offset: 1014400
+                  }
+                }
+              }),
               new TextRun({
                 text: values["name"],
                 font: "Bookman Old Style",
@@ -59,10 +82,10 @@ export default function generate(values) {
                 underline: true
               }),
               new TextRun({
-                text: " _________________________________________________",
-                size: 40,
+                text: " ══════════════════════════════════════════════ ",
+                size: 30,
                 bold: true,
-                underline: true
+                break: 1
               }),
               new TextRun({
                 break: 1,

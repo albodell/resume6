@@ -16,6 +16,9 @@ export default function getTextPara(textElement, lvl = 0, leftM = 0.1) {
   for (var i = 0; i < cleanTextArray.length; i++) {
     arrayOne.push(
       new docx.Paragraph({
+        spacing: {
+          after: 50
+        },
         bullet: {
           level: lvl
         },

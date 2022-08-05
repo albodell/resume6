@@ -16,6 +16,9 @@ export default function getTextPara(name, location, date) {
   for (var i = 0; i < name.length; i++) {
     arrayQ.push(
       new Paragraph({
+        spacing: {
+          after: 50
+        },
         children: [
           new TextRun({
             font: "Bookman Old Style",
@@ -36,6 +39,9 @@ export default function getTextPara(name, location, date) {
     arrayD.push(
       new Paragraph({
         alignment: AlignmentType.RIGHT,
+        spacing: {
+          after: 50
+        },
         children: [
           new TextRun({
             font: "Bookman Old Style",

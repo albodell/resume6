@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import generate from "./GenDoc";
-
 import "./styles.css";
 
 import { useForm, useField, splitFormProps } from "react-form";
@@ -28,17 +27,18 @@ const AreaField = React.forwardRef((props, ref) => {
 function App() {
   const defaultValues = React.useMemo(
     () => ({
-      name: "John Doe",
-      phone: "248-568-8923",
-      email: "Alex@gmail.com",
-      experience: ["Engineer"],
-      qualifications: ["something"],
-      company: ["Amazon"],
-      location: ["Detroit"],
-      date: ["6/12/2020"],
-      start: ["6/19/2019"],
-      end: ["7/2/2020"],
-      duties: ["This is a note."]
+      name: "",
+      experience: [""],
+      qualifications: [""],
+      company: [""],
+      location: [""],
+      date: [""],
+      start: [""],
+      end: [""],
+      duties: [""],
+      diplomaName: [""],
+      diplomaLocation: [""],
+      diplomaDate: [""]
     }),
     []
   );
@@ -62,22 +62,29 @@ function App() {
     <Form>
       <div>
         <label>
-          Name: <InputField field="name" />
+          Name: <InputField field="name" placeholder="John Doe" />
+          Include Logo{""}
+          <input type="checkbox" id="switch" class="checkbox" />
+          <label for="switch" class="toggle" />
         </label>
       </div>
       <div>
         <label>
-          Overview Title: <InputField field="overviewTitle" />
+          Overview Title:{" "}
+          <InputField field="overviewTitle" placeholder="e.g. Engineer" />
         </label>
         Overview:{" "}
         <label>
-          <AreaField field="overview" defaultValue="This is a note." />
+          <AreaField
+            field="overview"
+            placeholder="e.g. Graduate Mechanical Engineer with 10+ years of diversified Engineering..."
+          />
         </label>
       </div>
       <div>
         <label>
           Technical Expertise:{" "}
-          <AreaField field="skills" defaultValue="This is a note." />
+          <AreaField field="skills" placeholder="e.g. AutoCAD" />
         </label>
       </div>
       <div>
@@ -91,18 +98,36 @@ function App() {
           {values.experience.map((job, i) => (
             <div key={i}>
               <label>
-                Job Title: <InputField field={`experience.${i}`} /> Company:{" "}
-                <InputField field={`company.${i}`} />
+                Job Title:{" "}
+                <InputField
+                  field={`experience.${i}`}
+                  placeholder="e.g. Product Engineer"
+                />{" "}
+                Company:{" "}
+                <InputField field={`company.${i}`} placeholder="e.g. Amazon" />
                 <br />
                 <br />
-                Location: <InputField field={`location.${i}`} /> Start:{" "}
-                <InputField field={`start.${i}`} /> End:{" "}
-                <InputField field={`end.${i}`} />
+                Location:{" "}
+                <InputField
+                  field={`location.${i}`}
+                  placeholder="e.g. Detroit, MI"
+                />{" "}
+                Start:{" "}
+                <InputField
+                  field={`start.${i}`}
+                  placeholder="e.g. December 2008"
+                />{" "}
+                End:{" "}
+                <InputField field={`end.${i}`} placeholder="e.g. Present" />
                 <br />
                 <br />
               </label>
               <label>
-                Duties: <AreaField field={`duties.${i}`} />
+                Duties:{" "}
+                <AreaField
+                  field={`duties.${i}`}
+                  placeholder="e.g. Lead the engineering team for the development of..."
+                />
                 <button
                   type="button"
                   onClick={() => removeFieldValue("experience", i)}
@@ -133,9 +158,19 @@ function App() {
           {values.qualifications.map((job, i) => (
             <div key={i}>
               <label>
-                Diploma Name: <InputField field={`diplomaName.${i}`} /> Location
-                Earned: <InputField field={`diplomaLocation.${i}`} /> Date
-                Earned: <InputField field={`diplomaDate.${i}`} />{" "}
+                Diploma Name:{" "}
+                <InputField
+                  field={`diplomaName.${i}`}
+                  placeholder="e.g. Diploma, Mechanical Engineering"
+                  id="longer"
+                />{" "}
+                Location Earned:{" "}
+                <InputField field={`diplomaLocation.${i}`} placeholder="" />
+                Date Earned:{" "}
+                <InputField
+                  field={`diplomaDate.${i}`}
+                  placeholder="e.g. July 2019"
+                />{" "}
                 <button
                   type="button"
                   onClick={() => removeFieldValue("qualifications", i)}
@@ -157,7 +192,10 @@ function App() {
       <div>
         Specialized Training:{" "}
         <label>
-          <AreaField field="training" defaultValue="This is a note." />
+          <AreaField
+            field="training"
+            placeholder="e.g. Catia V5, Walmart, Detroit, MI"
+          />
         </label>
       </div>
 
