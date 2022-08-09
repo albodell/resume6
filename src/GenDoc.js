@@ -13,7 +13,8 @@ import skillsTable from "./SkillsTable";
 import bulletTable from "./BulletTable";
 import titleGen from "./TitleGen";
 import qualTable from "./QualTable";
-import logo from "./img/logo.png";
+import logo from "./img/Download.png";
+import * as fs from "fs";
 
 //generates doc and holds basic html headers words and stuff
 
@@ -26,6 +27,7 @@ export default function generate(values) {
   const skills = skillsTable(values["skills"]);
   const overview = bulletTable(values["overview"], 0, 0.5);
   const training = bulletTable(values["training"], 0, 0.5);
+  //const fs = require("fs");
 
   const experience = jobFormat(
     values["experience"],
@@ -59,21 +61,21 @@ export default function generate(values) {
               after: 150
             },
             children: [
-              new ImageRun({
-                data: logo,
-                transformation: {
-                  width: 50,
-                  height: 50
-                },
-                floating: {
-                  horizontalPosition: {
-                    offset: 1014400
-                  },
-                  verticalPosition: {
-                    offset: 1014400
-                  }
-                }
-              }),
+              // new ImageRun({
+              //   data: fs.readFileSync("src/img/Download.png"),
+              //   transformation: {
+              //     width: 100,
+              //     height: 100
+              //   },
+              // floating: {
+              //   horizontalPosition: {
+              //     offset: 1014400
+              //   },
+              //   verticalPosition: {
+              //     offset: 1014400
+              //   }
+              // }
+              // }),
               new TextRun({
                 text: values["name"],
                 font: "Bookman Old Style",

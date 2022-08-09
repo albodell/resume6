@@ -62,99 +62,153 @@ function App() {
     <Form>
       <div>
         <label>
-          Name: <InputField field="name" placeholder="John Doe" />
-          Include Logo{""}
+          Full Name: <InputField field="name" placeholder="John Doe" />
+          <datalist></datalist>
+          {/* Include Logo{""}
           <input type="checkbox" id="switch" class="checkbox" />
-          <label for="switch" class="toggle" />
+          <label for="switch" class="toggle" /> */}
         </label>
       </div>
-      <div>
+      <fieldset>
+        <legend>
+          Overview{" "}
+          <a href="#">
+            ?
+            <span>
+              <img
+                src={require("./img/overview.jpg")}
+                alt="image"
+                height="300"
+              />
+            </span>
+          </a>
+        </legend>
+
         <label>
           Overview Title:{" "}
           <InputField field="overviewTitle" placeholder="e.g. Engineer" />
         </label>
-        Overview:{" "}
-        <label>
-          <AreaField
-            field="overview"
-            placeholder="e.g. Graduate Mechanical Engineer with 10+ years of diversified Engineering..."
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Technical Expertise:{" "}
-          <AreaField field="skills" placeholder="e.g. AutoCAD" />
-        </label>
-      </div>
-      <div>
-        Experience:
+        <label for="title">Highlights: </label>
+        <AreaField
+          field="overview"
+          placeholder="e.g. Graduate Mechanical Engineer with 10+ years of diversified Engineering..."
+        />
+      </fieldset>
+      {/* <div>
+      Overview:{" "}
         <div
-          style={{
-            border: "1px solid black",
-            padding: "1rem"
-          }}
-        >
-          {values.experience.map((job, i) => (
-            <div key={i}>
-              <label>
-                Job Title:{" "}
-                <InputField
-                  field={`experience.${i}`}
-                  placeholder="e.g. Product Engineer"
-                />{" "}
-                Company:{" "}
-                <InputField field={`company.${i}`} placeholder="e.g. Amazon" />
-                <br />
-                <br />
-                Location:{" "}
-                <InputField
-                  field={`location.${i}`}
-                  placeholder="e.g. Detroit, MI"
-                />{" "}
-                Start:{" "}
-                <InputField
-                  field={`start.${i}`}
-                  placeholder="e.g. December 2008"
-                />{" "}
-                End:{" "}
-                <InputField field={`end.${i}`} placeholder="e.g. Present" />
-                <br />
-                <br />
-              </label>
-              <label>
-                Duties:{" "}
-                <AreaField
-                  field={`duties.${i}`}
-                  placeholder="e.g. Lead the engineering team for the development of..."
-                />
-                <button
-                  type="button"
-                  onClick={() => removeFieldValue("experience", i)}
-                >
-                  X
-                </button>
-              </label>
-            </div>
-          ))}
-
-          <button
-            type="button"
-            onClick={() => pushFieldValue("experience", "")}
+            style={{
+              border: "1px solid black",
+              padding: "1rem"
+            }}
           >
-            Add Job
-          </button>
+          <label>
+            Overview Title:{" "}
+            <InputField field="overviewTitle" placeholder="e.g. Engineer" />
+          </label>
+          <label for="title">
+          Highlights:{" "}
+          </label>
+          <AreaField rows="5" id="title" name="title"
+              field="overview"
+              placeholder="e.g. Graduate Mechanical Engineer with 10+ years of diversified Engineering..."
+            />
+          </div>
+      </div> */}
+      <div>
+        <div class="aligned">
+          <label>
+            Technical Expertise{" "}
+            <a href="#">
+              ?
+              <span>
+                <img
+                  src={require("./img/expertise.PNG")}
+                  alt="image"
+                  height="300"
+                />
+              </span>
+            </a>
+          </label>
+          <AreaField field="skills" placeholder="e.g. AutoCAD" />
         </div>
       </div>
+      <fieldset>
+        <legend>
+          Experience{" "}
+          <a href="#">
+            ?
+            <span>
+              <img
+                src={require("./img/experience.PNG")}
+                alt="image"
+                height="350"
+              />
+            </span>
+          </a>
+        </legend>
 
-      <div>
-        Academic Qualifications:
-        <div
-          style={{
-            border: "1px solid black",
-            padding: "1rem"
-          }}
-        >
+        {values.experience.map((job, i) => (
+          <div key={i}>
+            <label>
+              Job Title:{" "}
+              <InputField
+                field={`experience.${i}`}
+                placeholder="e.g. Product Engineer"
+              />{" "}
+              Company:{" "}
+              <InputField field={`company.${i}`} placeholder="e.g. Amazon" />
+              <br />
+              <br />
+              Location:{" "}
+              <InputField
+                field={`location.${i}`}
+                placeholder="e.g. Detroit, MI"
+              />{" "}
+              Start:{" "}
+              <InputField
+                field={`start.${i}`}
+                placeholder="e.g. December 2008"
+              />{" "}
+              End: <InputField field={`end.${i}`} placeholder="e.g. Present" />
+              <br />
+              <br />
+            </label>
+            <label>
+              Duties:{" "}
+              <AreaField
+                field={`duties.${i}`}
+                placeholder="e.g. Lead the engineering team for the development of..."
+              />
+              <button
+                type="button"
+                onClick={() => removeFieldValue("experience", i)}
+              >
+                X
+              </button>
+            </label>
+            <button
+              type="button"
+              onClick={() => pushFieldValue("experience", "")}
+            >
+              Add Job
+            </button>
+          </div>
+        ))}
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          {" "}
+          Academic Qualifications{" "}
+          <a href="#">
+            ?
+            <span>
+              <img src={require("./img/qual.PNG")} alt="image" height="200" />
+            </span>
+          </a>
+        </legend>
+        <div>
           {values.qualifications.map((job, i) => (
             <div key={i}>
               <label>
@@ -187,10 +241,16 @@ function App() {
             Add Diploma
           </button>
         </div>
-      </div>
+      </fieldset>
 
       <div>
-        Specialized Training:{" "}
+        Specialized Training{" "}
+        <a href="#">
+          ?
+          <span>
+            <img src={require("./img/training.PNG")} alt="image" height="150" />
+          </span>
+        </a>
         <label>
           <AreaField
             field="training"

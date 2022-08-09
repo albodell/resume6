@@ -44,6 +44,41 @@ label {
   padding: 0.3rem;
 }
 
+legend {
+  padding: 5px 10px;
+}
+
+fieldset {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 50px;
+
+  border: 2px groove;
+  padding: 0.3rem;
+  border-color: black;
+}
+
+a {
+  position: relative;
+}
+a span {
+  position: absolute;
+  display: none;
+  z-index: 99;
+}
+a:hover span {
+  display: block;
+}
+
+.aligned {
+  padding: 20px;
+  margin: 50 50 1rem;
+}
+.aligned textarea,
+label {
+  display: block;
+}
+
 #longer input {
   width: 400px;
 }
